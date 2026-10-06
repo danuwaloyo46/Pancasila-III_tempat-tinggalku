@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPI Interaktif - Tempat Tinggalku Bagian dari NKRI</title>
+  <meta name="description" content="Media Pembelajaran Interaktif modern Canva style untuk SD materi Tempat Tinggalku Bagian dari NKRI.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Quicksand & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brandPurple: '#7B2CBF',
+            brandTosca: '#2EC4B6',
+            brandPurpleDark: '#5A189A'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Quicksand', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Quicksand', sans-serif;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-certificate, #printable-certificate * {
+        visibility: visible;
+      }
+      #printable-certificate {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-purple-200 selection:text-purple-900 min-h-screen flex flex-col">
+
+  <!-- TOPBAR NAVIGATION -->
+  <header class="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div onclick="switchView('home')" class="flex items-center gap-2.5 cursor-pointer">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7B2CBF] to-[#2EC4B6] flex items-center justify-center text-white font-black text-sm shadow">
+          NKRI
+        </div>
+        <span class="text-base sm:text-lg font-black tracking-tight text-[#7B2CBF] font-display whitespace-nowrap">
+          MPI Interaktif SD
+        </span>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <button onclick="switchView('home')" id="nav-home" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-100 text-[#7B2CBF]">Beranda</button>
+        <button onclick="switchView('materi')" id="nav-materi" class="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Materi</button>
+        <button onclick="switchView('asesmen')" id="nav-asesmen" class="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Asesmen Akhir</button>
+        <button onclick="switchView('sertifikat')" id="nav-sertifikat" class="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Sertifikat</button>
+        <button onclick="switchView('kirim')" id="nav-kirim" class="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Kirim Nilai</button>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex items-center gap-1.5 bg-purple-50 px-3 py-1 rounded-xl text-xs font-bold text-[#7B2CBF] border border-purple-100">
+          <span class="w-2 h-2 rounded-full bg-[#2EC4B6]"></span>
+          <span id="progress-top-text">0% Tuntas</span>
+        </div>
+        <button onclick="toggleDarkMode()" title="Mode Terang / Gelap" class="p-2 rounded-xl text-slate-600 hover:bg-slate-100">
+          🌓
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="flex md:hidden items-center justify-around border-t border-slate-200 py-1.5 px-2 bg-slate-50 text-xs">
+      <button onclick="switchView('home')" class="font-bold text-[#7B2CBF] py-1">🏠 Beranda</button>
+      <button onclick="switchView('materi')" class="font-bold text-slate-600 py-1">📖 Materi</button>
+      <button onclick="switchView('asesmen')" class="font-bold text-slate-600 py-1">📝 Asesmen</button>
+      <button onclick="switchView('sertifikat')" class="font-bold text-slate-600 py-1">🏆 Sertifikat</button>
+      <button onclick="switchView('kirim')" class="font-bold text-[#0F766E] py-1">📤 Kirim</button>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+    
+    <!-- VIEW 1: BERANDA / HOME -->
+    <section id="view-home" class="space-y-8">
+      <!-- Hero Banner -->
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#7B2CBF] via-[#9D4EDD] to-[#2EC4B6] p-6 sm:p-10 text-white shadow-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-8 space-y-4">
+            <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              ✨ Media Pembelajaran Interaktif (MPI) Tematik SD
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-black font-display tracking-tight leading-tight">
+              Tempat Tinggalku Bagian dari NKRI
+            </h1>
+            <p class="text-sm sm:text-base text-white/90 max-w-xl font-medium leading-relaxed">
+              Selamat datang dalam petualangan seru belajar tempat tinggal kita di Indonesia! Belajar mandiri, dengarkan narasi guru, rekam suaramu, dan cetak sertifikat prestasimu.
+            </p>
+            <div class="pt-2 max-w-md bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/20">
+              <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                <span>Progress Belajar Mandiri:</span>
+                <span id="hero-progress-text" class="text-amber-300 font-mono text-sm">0%</span>
+              </div>
+              <div class="w-full h-3 bg-white/20 rounded-full overflow-hidden">
+                <div id="hero-progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-[#2EC4B6] rounded-full transition-all duration-500" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Badges -->
+          <div class="lg:col-span-4 bg-white/15 backdrop-blur-md p-4 rounded-3xl border border-white/25 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-300">⭐ Penghargaan Digital</h3>
+            <div class="grid grid-cols-2 gap-2 text-center text-white">
+              <div class="p-2.5 rounded-xl bg-white/20 border border-white/30">
+                <span class="text-2xl block">🏝️</span>
+                <span class="text-[11px] font-bold block">Penjelajah NKRI</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/20 border border-white/30">
+                <span class="text-2xl block">🎙️</span>
+                <span class="text-[11px] font-bold block">Penyuara Merdu</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/20 border border-white/30">
+                <span class="text-2xl block">⭐</span>
+                <span class="text-[11px] font-bold block">Bintang Asesmen</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white/20 border border-white/30">
+                <span class="text-2xl block">🏆</span>
+                <span class="text-[11px] font-bold block">Juara Teladan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Identitas Siswa -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-200 shadow-md space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h2 class="text-xl font-bold text-slate-800 font-display">📌 Identitas Peserta Didik</h2>
+          <span class="text-xs text-slate-500">Nama akan dicetak pada Sertifikat & Nilai</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Nama Siswa:</label>
+            <input type="text" id="input-nama" value="Budi Pratama" oninput="saveStudentProfile()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#7B2CBF] outline-none text-sm font-semibold text-slate-800">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Kelas:</label>
+            <input type="text" id="input-kelas" value="Kelas 2 SD" oninput="saveStudentProfile()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#2EC4B6] outline-none text-sm font-semibold text-slate-800">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">Mata Pelajaran:</label>
+            <input type="text" id="input-mapel" value="Pendidikan Pancasila / PKn" oninput="saveStudentProfile()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#7B2CBF] outline-none text-sm font-semibold text-slate-800">
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Utama Berupa Kartu Interaktif -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-black text-slate-900 font-display">Menu Utama Pembelajaran</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Kartu 1: Materi -->
+          <div onclick="switchView('materi')" class="cursor-pointer bg-white hover:bg-purple-50/50 p-6 rounded-3xl border-2 border-slate-200 hover:border-[#7B2CBF] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-3xl p-3 bg-purple-100 rounded-2xl inline-block">📖</span>
+              <span class="text-[10px] font-black uppercase tracking-wider text-[#7B2CBF] block">Tahap 1</span>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Materi Pembelajaran</h3>
+              <p class="text-xs text-slate-600">Pelajari teks interaktif NKRI, RT hingga Presiden, dan 3 bentang alam.</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 text-xs font-bold text-[#7B2CBF] flex items-center justify-between">
+              <span>🎙️ Ada Perekam Suara</span>
+              <span>Buka &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Kartu 2: Asesmen -->
+          <div onclick="switchView('asesmen')" class="cursor-pointer bg-white hover:bg-teal-50/50 p-6 rounded-3xl border-2 border-slate-200 hover:border-[#2EC4B6] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-3xl p-3 bg-teal-100 rounded-2xl inline-block">📝</span>
+              <span class="text-[10px] font-black uppercase tracking-wider text-[#0F766E] block">Tahap 2</span>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Asesmen Akhir</h3>
+              <p class="text-xs text-slate-600">20 soal otomatis tingkat sedang-tinggi dengan nilai instan dan konfeti!</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 text-xs font-bold text-[#0F766E] flex items-center justify-between">
+              <span id="card-score-preview">20 Soal Pilihan</span>
+              <span>Mulai &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Kartu 3: Sertifikat -->
+          <div onclick="switchView('sertifikat')" class="cursor-pointer bg-white hover:bg-purple-50/50 p-6 rounded-3xl border-2 border-slate-200 hover:border-[#7B2CBF] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-3xl p-3 bg-purple-100 rounded-2xl inline-block">🏆</span>
+              <span class="text-[10px] font-black uppercase tracking-wider text-[#7B2CBF] block">Tahap 3</span>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Sertifikat Hasil Belajar</h3>
+              <p class="text-xs text-slate-600">Sertifikat resmi Canva-style berdominasi ungu dan tosca. Unduh JPG & cetak.</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 text-xs font-bold text-[#7B2CBF] flex items-center justify-between">
+              <span>Unduh JPG & Print</span>
+              <span>Lihat &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Kartu 4: Kirim Nilai -->
+          <div onclick="switchView('kirim')" class="cursor-pointer bg-white hover:bg-emerald-50/50 p-6 rounded-3xl border-2 border-slate-200 hover:border-emerald-500 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-3xl p-3 bg-emerald-100 rounded-2xl inline-block">📤</span>
+              <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 block">Tahap 4</span>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Kirim Nilai</h3>
+              <p class="text-xs text-slate-600">Kirim hasil nilai dan rekaman suara langsung ke WhatsApp admin 085828459399.</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 text-xs font-bold text-emerald-700 flex items-center justify-between">
+              <span>WhatsApp 085828459399</span>
+              <span>Kirim &rarr;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: MATERI PEMBELAJARAN -->
+    <section id="view-materi" class="hidden space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-2 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-2">
+          <button onclick="switchView('home')" class="text-xs font-bold text-slate-600 hover:text-[#7B2CBF] px-3 py-1.5 rounded-xl hover:bg-purple-50">
+            🏠 Beranda
+          </button>
+          <span class="text-slate-300">/</span>
+          <span class="text-xs font-bold text-[#7B2CBF] bg-purple-50 px-2.5 py-1 rounded-lg">
+            Materi: Tempat Tinggalku Bagian dari NKRI
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="speakMaterialText()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-teal-50 text-[#0F766E] border border-teal-200 hover:bg-teal-100 flex items-center gap-1.5">
+            🔊 <span id="btn-speak-label">Dengarkan Narasi Guru</span>
+          </button>
+          <button onclick="restartMaterial()" class="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">
+            🔄 Ulangi Materi
+          </button>
+        </div>
+      </div>
+
+      <!-- Unit Tabs -->
+      <div class="grid grid-cols-4 gap-2">
+        <button onclick="selectMaterialUnit(0)" id="mat-tab-0" class="p-2.5 rounded-2xl text-left border-2 bg-purple-50 border-[#7B2CBF] text-[#7B2CBF] font-bold text-xs">
+          1. Wilayah NKRI
+        </button>
+        <button onclick="selectMaterialUnit(1)" id="mat-tab-1" class="p-2.5 rounded-2xl text-left border-2 bg-white border-slate-200 text-slate-600 font-semibold text-xs">
+          2. RT s.d. Presiden
+        </button>
+        <button onclick="selectMaterialUnit(2)" id="mat-tab-2" class="p-2.5 rounded-2xl text-left border-2 bg-white border-slate-200 text-slate-600 font-semibold text-xs">
+          3. Tiga Lingkungan
+        </button>
+        <button onclick="selectMaterialUnit(3)" id="mat-tab-3" class="p-2.5 rounded-2xl text-left border-2 bg-white border-slate-200 text-slate-600 font-semibold text-xs">
+          4. Menjaga Alam
+        </button>
+      </div>
+
+      <!-- Material Display Card -->
+      <div id="material-content-box" class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-200 shadow-md space-y-6"></div>
+
+      <!-- Bottom Nav -->
+      <div class="flex items-center justify-between pt-4 border-t border-slate-200">
+        <button onclick="prevMaterialUnit()" id="btn-prev-unit" class="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">
+          &larr; Unit Sebelumnya
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="nextMaterialUnit()" id="btn-next-unit" class="bg-[#7B2CBF] hover:bg-[#6823A4] text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow">
+            Lanjut Unit Berikutnya &rarr;
+          </button>
+          <button onclick="switchView('asesmen')" class="bg-[#2EC4B6] hover:bg-[#25A69A] text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow">
+            Mulai Asesmen (20 Soal) &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: ASESMEN AKHIR (20 SOAL) -->
+    <section id="view-asesmen" class="hidden space-y-6">
+      <div class="text-center space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-[#7B2CBF]">
+          📝 Evaluasi Hasil Belajar Mandiri
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-[#7B2CBF] font-display">
+          Asesmen Akhir (20 Soal)
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
+          Pilihlah salah satu jawaban yang paling tepat. Skor maksimal 100 dengan penilaian otomatis!
+        </p>
+      </div>
+
+      <!-- Result Banner when submitted -->
+      <div id="quiz-result-banner" class="hidden bg-gradient-to-r from-purple-50 via-white to-teal-50 rounded-3xl p-6 border-2 border-[#7B2CBF] shadow-lg text-center space-y-4">
+        <h3 class="text-2xl font-black text-[#7B2CBF] font-display">Hasil Asesmen Akhirmu</h3>
+        <div class="flex items-center justify-center gap-8 py-2">
+          <div>
+            <span class="text-xs font-bold text-slate-500 uppercase block">Nilai Akhir:</span>
+            <span id="final-score-display" class="text-5xl font-black text-[#7B2CBF] font-mono">0</span>
+            <span class="text-xs text-slate-400 block">dari 100 poin</span>
+          </div>
+          <div class="w-px h-16 bg-slate-300"></div>
+          <div>
+            <span class="text-xs font-bold text-slate-500 uppercase block">Predikat:</span>
+            <span id="final-predicate-display" class="text-3xl font-extrabold text-[#0F766E] font-display">-</span>
+            <span id="predicate-rule-text" class="text-xs text-slate-500 block">Kategori</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button onclick="switchView('sertifikat')" class="bg-[#7B2CBF] text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow">
+            🏆 Buka & Unduh Sertifikat
+          </button>
+          <button onclick="resetQuiz()" class="bg-slate-100 text-slate-700 px-4 py-2.5 rounded-xl font-semibold text-xs hover:bg-slate-200">
+            🔄 Ulangi Asesmen
+          </button>
+        </div>
+      </div>
+
+      <!-- Question Stepper Dots -->
+      <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-600">
+          <span id="q-number-indicator">Soal Nomor: 1 dari 20</span>
+          <span id="q-answered-indicator" class="text-[#7B2CBF]">Terjawab: 0/20</span>
+        </div>
+        <div class="flex items-center gap-1.5 overflow-x-auto py-1" id="q-dots-container"></div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-200 shadow-md space-y-6">
+        <div class="flex items-center justify-between">
+          <span id="q-difficulty-badge" class="px-3 py-1 bg-purple-50 text-[#7B2CBF] border border-purple-200 rounded-full text-xs font-bold">
+            Tingkat Sedang
+          </span>
+          <span class="text-xs text-slate-400 font-semibold">Bobot: 5 Poin</span>
+        </div>
+        <h3 id="q-text" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug font-display">
+          Pertanyaan...
+        </h3>
+        <div id="q-options-container" class="space-y-3"></div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="prevQuestion()" id="btn-prev-q" class="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">
+            &larr; Sebelumnya
+          </button>
+          <div class="flex items-center gap-2">
+            <button onclick="nextQuestion()" id="btn-next-q" class="bg-[#2EC4B6] hover:bg-[#25A69A] text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow">
+              Selanjutnya &rarr;
+            </button>
+            <button onclick="submitQuiz()" id="btn-submit-q" class="hidden bg-[#7B2CBF] hover:bg-[#6823A4] text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow animate-pulse">
+              ✅ Kumpulkan Jawaban
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: SERTIFIKAT HASIL BELAJAR -->
+    <section id="view-sertifikat" class="hidden space-y-6">
+      <div class="text-center space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-[#7B2CBF]">
+          🏆 Dokumen Resmi Prestasi Belajar
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-[#7B2CBF] font-display">
+          Sertifikat Hasil Belajar
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
+          Tampilan sertifikat modern Canva bernuansa ungu (#7B2CBF) dan tosca (#2EC4B6).
+        </p>
+      </div>
+
+      <!-- Constraint Warning if not taken yet -->
+      <div id="cert-warning-box" class="bg-amber-50 border-2 border-amber-300 rounded-3xl p-8 text-center space-y-4 max-w-2xl mx-auto shadow-md">
+        <span class="text-4xl">⚠️</span>
+        <h3 class="text-xl font-bold text-amber-900 font-display">Asesmen Akhir Belum Dikerjakan!</h3>
+        <p class="text-xs sm:text-sm text-amber-800 leading-relaxed">
+          Sesuai ketentuan, <strong>nilai tidak boleh kosong pada sertifikat</strong>. Yuk, kerjakan 20 butir soal asesmen terlebih dahulu untuk mencetak nilaimu pada sertifikat!
+        </p>
+        <button onclick="switchView('asesmen')" class="bg-[#7B2CBF] hover:bg-[#6823A4] text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow">
+          Mulai Asesmen Sekarang &rarr;
+        </button>
+      </div>
+
+      <!-- Action buttons -->
+      <div id="cert-action-buttons" class="hidden flex flex-wrap items-center justify-center gap-3 no-print">
+        <button onclick="downloadCertificateJPG()" class="bg-[#7B2CBF] hover:bg-[#6A24A6] text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow flex items-center gap-2">
+          <span>📥 Unduh Sertifikat JPG</span>
+        </button>
+        <button onclick="window.print()" class="bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-200 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm flex items-center gap-2">
+          <span>🖨 Cetak Sertifikat</span>
+        </button>
+        <button onclick="downloadAudioFile()" id="btn-cert-download-audio" class="bg-[#2EC4B6] hover:bg-[#25A69A] text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow flex items-center gap-2">
+          <span>📥 Unduh Rekaman Suara</span>
+        </button>
+      </div>
+
+      <!-- Printable Canva Certificate Card -->
+      <div id="printable-certificate" class="hidden relative bg-gradient-to-br from-purple-50/50 via-white to-teal-50/50 p-6 sm:p-12 rounded-3xl border-8 border-[#7B2CBF] shadow-2xl text-center max-w-4xl mx-auto" style="box-shadow: 0 15px 35px -10px rgba(123,44,191,0.25), inset 0 0 0 4px #2EC4B6;">
+        <!-- Corners -->
+        <div class="absolute top-3 left-3 w-10 h-10 border-t-4 border-l-4 border-[#2EC4B6] rounded-tl-lg"></div>
+        <div class="absolute top-3 right-3 w-10 h-10 border-t-4 border-r-4 border-[#2EC4B6] rounded-tr-lg"></div>
+        <div class="absolute bottom-3 left-3 w-10 h-10 border-b-4 border-l-4 border-[#2EC4B6] rounded-bl-lg"></div>
+        <div class="absolute bottom-3 right-3 w-10 h-10 border-b-4 border-r-4 border-[#2EC4B6] rounded-br-lg"></div>
+
+        <div class="relative z-10 space-y-5">
+          <p class="text-xs font-bold tracking-widest text-[#7B2CBF] uppercase">Media Pembelajaran Interaktif • Sekolah Dasar</p>
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 font-display">PENGHARGAAN PRESTASI BELAJAR</h2>
+          <p class="text-xs sm:text-sm text-slate-500">Diberikan dengan penuh apresiasi kepada:</p>
+          
+          <div class="py-1">
+            <h3 id="cert-student-name" class="text-3xl sm:text-5xl font-extrabold text-[#7B2CBF] font-display capitalize">Budi Pratama</h3>
+            <div class="w-64 h-1 bg-[#2EC4B6] mx-auto mt-2 rounded-full"></div>
+            <p id="cert-student-class" class="text-xs sm:text-sm font-bold text-slate-700 mt-2">Kelas 2 SD • Mata Pelajaran: Pendidikan Pancasila / PKn</p>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto">
+            Telah menyelesaikan rangkaian pembelajaran dan Asesmen Akhir kompetensi materi:
+            <br><strong class="text-slate-900 font-display">“B. Tempat Tinggalku Bagian dari NKRI”</strong>
+          </p>
+
+          <div class="max-w-md mx-auto bg-purple-50/70 border border-[#7B2CBF]/30 rounded-2xl p-4 flex items-center justify-around">
+            <div>
+              <span class="text-[10px] font-bold text-[#7B2CBF] uppercase block">Nilai Asesmen Akhir</span>
+              <span id="cert-score" class="text-4xl font-black text-[#7B2CBF] font-mono">0</span>
+            </div>
+            <div class="w-px h-12 bg-slate-300"></div>
+            <div>
+              <span class="text-[10px] font-bold text-[#0F766E] uppercase block">Predikat Capaian</span>
+              <span id="cert-predicate" class="text-2xl font-black text-[#0F766E] font-display">-</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-500">Tanggal Belajar: <span id="cert-date" class="font-bold text-slate-700"></span></p>
+
+          <!-- Signatures -->
+          <div class="pt-6 grid grid-cols-3 items-end text-center">
+            <div>
+              <p class="text-[11px] text-slate-500">Guru Pengampu,</p>
+              <p class="font-serif italic text-lg text-[#7B2CBF] my-2">Danu Waloyo</p>
+              <div class="w-28 border-b border-slate-300 mx-auto"></div>
+              <p class="text-[11px] font-bold text-slate-800 mt-1">Danu Waloyo, S.Pd.</p>
+            </div>
+            <div class="flex justify-center">
+              <div class="w-16 h-16 rounded-full bg-amber-400 border-4 border-amber-500 flex flex-col items-center justify-center text-amber-950 font-black text-[10px] shadow">
+                <span>LULUS</span>
+                <span class="text-[8px]">RESMI</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-[11px] text-slate-500">Kepala Sekolah,</p>
+              <p class="font-serif italic text-lg text-[#2EC4B6] my-2">Siti Rahmah</p>
+              <div class="w-28 border-b border-slate-300 mx-auto"></div>
+              <p class="text-[11px] font-bold text-slate-800 mt-1">Hj. Siti Rahmah, M.Pd.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: KIRIM NILAI KE WHATSAPP (085828459399) -->
+    <section id="view-kirim" class="hidden space-y-6">
+      <div class="text-center space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+          📤 Pengiriman Laporan Hasil Belajar
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-[#7B2CBF] font-display">
+          Kirim Nilai ke WhatsApp Admin
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
+          Nilai dan laporan belajar terkirim ke WhatsApp admin dengan nomor <strong class="font-mono text-slate-900">085828459399</strong>.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl border-2 border-[#7B2CBF]/30 p-6 sm:p-8 shadow-xl space-y-5 max-w-2xl mx-auto">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h3 class="text-base font-bold text-slate-800 font-display">Format Pesan WhatsApp Resmi</h3>
+          <button onclick="copyWaText()" id="btn-copy-wa" class="text-xs bg-slate-100 hover:bg-purple-100 text-[#7B2CBF] px-3 py-1.5 rounded-xl font-bold">
+            📋 Salin Pesan
+          </button>
+        </div>
+
+        <pre id="wa-preview-text" class="bg-slate-900 text-emerald-300 font-mono text-xs sm:text-sm p-4 rounded-2xl whitespace-pre-wrap leading-relaxed border border-slate-800"></pre>
+
+        <div class="bg-gradient-to-r from-purple-50 to-teal-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-700 space-y-1.5">
+          <p class="font-bold text-[#7B2CBF]">💡 Langkah Mengirimkan Gambar JPG & Rekaman Suara:</p>
+          <ol class="list-decimal list-inside space-y-1">
+            <li>Unduh <strong>Sertifikat JPG</strong> pada menu Sertifikat.</li>
+            <li>Unduh <strong>Rekaman Suara</strong> (.webm) pada tombol rekam.</li>
+            <li>Klik tombol hijau di bawah untuk membuka WhatsApp Admin (085828459399), lalu lampirkan kedua berkas tersebut pada chat!</li>
+          </ol>
+        </div>
+
+        <a id="wa-link-btn" href="#" target="_blank" class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all text-sm sm:text-base">
+          🚀 Kirim ke WhatsApp Admin (085828459399)
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FLOATING AUDIO RECORDER (Sticky widget on bottom right) -->
+  <div id="floating-recorder" class="fixed bottom-4 right-4 z-40 max-w-xs w-[90vw] sm:w-80 rounded-2xl bg-white/95 backdrop-blur-md border-2 border-[#2EC4B6] shadow-2xl overflow-hidden text-slate-800">
+    <div class="bg-gradient-to-r from-[#7B2CBF] to-[#2EC4B6] px-3 py-2 flex items-center justify-between text-white text-xs font-bold">
+      <span>🎙️ Perekam Suara Membaca</span>
+      <button onclick="toggleRecorderBody()" id="btn-toggle-rec" class="text-[10px] bg-white/20 px-2 py-0.5 rounded-lg">Kecilkan</button>
+    </div>
+    <div id="recorder-body" class="p-3 space-y-2 text-xs">
+      <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-200">
+        <span id="rec-status-text" class="text-[11px] font-semibold text-slate-600">Siap Merekam</span>
+        <span id="rec-timer" class="font-mono font-bold text-[#7B2CBF] bg-purple-50 px-2 py-0.5 rounded border border-purple-100">00:00</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleRecording()" id="btn-rec-action" class="flex-1 bg-[#7B2CBF] hover:bg-[#6823A4] text-white py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1">
+          🔴 Mulai Rekam
+        </button>
+        <button onclick="playRecordedAudio()" id="btn-rec-play" class="hidden bg-[#2EC4B6] text-white p-2 rounded-xl font-bold">
+          ▶️
+        </button>
+        <button onclick="downloadAudioFile()" id="btn-rec-dl" class="hidden bg-slate-100 hover:bg-slate-200 text-[#7B2CBF] p-2 rounded-xl font-bold border border-slate-300">
+          📥
+        </button>
+      </div>
+      <p class="text-[10px] text-slate-400 text-center">Gunakan untuk membaca nyaring materi.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 no-print mt-auto">
+    <p class="font-bold text-[#7B2CBF]">Media Pembelajaran Interaktif (MPI) Tematik SD • Deep Learning</p>
+    <p class="mt-1">Nomor WhatsApp Admin Guru: <strong>085828459399</strong></p>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // DATA MATERI
+    const MATERIAL_DATA = [
+      {
+        title: "Indonesia Negaraku, Tempat Tinggalku yang Luas",
+        subtitle: "Mengenal Wilayah NKRI dari Sabang sampai Merauke",
+        paragraphs: [
+          "Indonesia adalah Negara Kesatuan Republik Indonesia (NKRI). Indonesia merupakan negara kepulauan yang sangat indah. Wilayah Indonesia terdiri atas beberapa pulau kecil maupun besar.",
+          "Indonesia memiliki lebih dari 17.000 pulau! Tidak hanya memiliki banyak pulau, Indonesia juga memiliki wilayah yang sangat luas.",
+          "Berdasarkan data Badan Pusat Statistik (BPS) tahun 2021, luas Indonesia adalah 1.916.906 kilometer persegi untuk wilayah daratan. Luas wilayah Indonesia terbentang dari Sabang di barat hingga Merauke di timur."
+        ],
+        points: ["NKRI: Negara Kesatuan Republik Indonesia", "Memiliki > 17.000 pulau", "Luas daratan 1.916.906 km² (BPS 2021)", "Terbentang dari Sabang hingga Merauke"]
+      },
+      {
+        title: "Tempat Tinggalku & Jenjang Pemimpin Wilayah",
+        subtitle: "Dari Rumah, RT, RW, Kelurahan, Kecamatan, Kabupaten, hingga Presiden",
+        paragraphs: [
+          "Rumahmu dan rumah tetangga adalah satu kesatuan dalam rukun tetangga (RT). RT adalah gabungan beberapa keluarga dalam suatu desa atau kelurahan yang membentuk suatu kesatuan.",
+          "Gabungan beberapa rukun tetangga (RT) disebut rukun warga (RW). Kumpulan beberapa RW membentuk tingkat kelurahan. Adapun tingkat lebih tinggi adalah kecamatan. Beberapa kecamatan membentuk kabupaten.",
+          "RT dipimpin ketua RT. RW dipimpin ketua RW. Kelurahan dipimpin lurah. Kecamatan dipimpin camat. Kabupaten dipimpin bupati, dan Negara Indonesia dipimpin oleh presiden."
+        ],
+        points: ["RT dipimpin Ketua RT", "RW dipimpin Ketua RW", "Kelurahan dipimpin Lurah", "Kecamatan dipimpin Camat", "Kabupaten dipimpin Bupati", "Negara Indonesia dipimpin Presiden"]
+      },
+      {
+        title: "Ragam Bentang Alam & Mata Pencarian",
+        subtitle: "Kehidupan di Dataran Tinggi, Dataran Rendah, dan Pantai",
+        paragraphs: [
+          "Lingkungan sangat beragam: persawahan, pasar, bangunan, perkebunan, lapangan, perkantoran, dan sekolah.",
+          "Dataran tinggi biasanya berupa pegunungan sejuk. Terdapat perkebunan kopi, teh, sayur, dan buah-buahan. Masyarakat bermata pencarian sebagai petani sayur, buah, kopi, dan teh.",
+          "Di dataran rendah biasanya terdapat persawahan, pabrik, rumah sakit, dan kantor pemerintahan.",
+          "Sementara pantai biasanya berupa lautan dan pasir. Terdapat tambak ikan, pohon kelapa, dan karang. Oleh karena itu, di pantai kebanyakan masyarakat bekerja sebagai nelayan."
+        ],
+        points: ["Dataran Tinggi: kebun teh/kopi/sayur/buah, udara sejuk", "Dataran Rendah: persawahan, pabrik, rumah sakit, kantor", "Pantai: nelayan penangkap ikan, tambak, pohon kelapa"]
+      },
+      {
+        title: "Menjaga Lingkungan & Kita Sebagai Makhluk Sosial",
+        subtitle: "Hutan Asri vs Gundul, Saling Menghargai dan Hidup Rukun",
+        paragraphs: [
+          "Lingkungan dapat memengaruhi kehidupan manusia. Jika lingkungan rusak, rusak pula kehidupan manusia. Hutan gundul menyebabkan banjir dan manusia kesulitan beraktivitas.",
+          "Jika hutan asri, berbagai manfaat diperoleh: tidak terjadi banjir, kebutuhan manusia tercukupi, dan aktivitas berjalan baik.",
+          "Perbedaan lingkungan tidak boleh dipermasalahkan. Kita harus saling menghargai keberagaman, saling menyapa, dan rukun. Kita adalah makhluk sosial: artinya kita tidak bisa hidup tanpa bantuan manusia lain."
+        ],
+        points: ["Hutan gundul memicu banjir & bencana", "Hutan asri menjaga kelangsungan hidup", "Makhluk sosial: tidak bisa hidup tanpa orang lain", "Wajib saling menghargai & hidup rukun"]
+      }
+    ];
+
+    // 20 SOAL ASESMEN
+    const QUIZ_DATA = [
+      { q: "Apa kepanjangan dari singkatan NKRI?", options: ["Negara Kesatuan Republik Indonesia", "Negara Kebangsaan Rakyat Indonesia", "Negara Kepulauan Republik Indonesia", "Negara Kedaulatan Rakyat Indonesia"], a: 0, diff: "Sedang" },
+      { q: "Mengapa Indonesia disebut sebagai negara kepulauan?", options: ["Karena hanya memiliki 1 pulau besar", "Karena terdiri atas ribuan pulau kecil maupun besar", "Karena hanya memiliki daratan gurun", "Karena tidak memiliki laut"], a: 1, diff: "Sedang" },
+      { q: "Berapa perkiraan jumlah pulau yang dimiliki oleh Negara Indonesia?", options: ["Kurang dari 1.000 pulau", "Sekitar 5.000 pulau", "Lebih dari 17.000 pulau", "Tepat 100 pulau"], a: 2, diff: "Sedang" },
+      { q: "Berdasarkan data BPS tahun 2021, berapakah luas wilayah daratan Indonesia?", options: ["1.916.906 kilometer persegi", "916.000 kilometer persegi", "2.500.000 kilometer persegi", "500.000 kilometer persegi"], a: 0, diff: "Tinggi" },
+      { q: "Wilayah Indonesia membentang luas dari ujung barat hingga ujung timur, yaitu dari ...", options: ["Jakarta hingga Surabaya", "Sabang hingga Merauke", "Sumatra hingga Bali", "Miangas hingga Rote"], a: 1, diff: "Sedang" },
+      { q: "Gabungan beberapa keluarga dalam suatu desa/kelurahan yang membentuk kesatuan disebut ...", options: ["Rukun Warga (RW)", "Rukun Tetangga (RT)", "Kecamatan", "Kabupaten"], a: 1, diff: "Sedang" },
+      { q: "Gabungan beberapa Rukun Tetangga (RT) dalam suatu wilayah dinamakan ...", options: ["Rukun Warga (RW)", "Kecamatan", "Provinsi", "Negara"], a: 0, diff: "Sedang" },
+      { q: "Siapakah pemimpin pada tingkat Rukun Tetangga (RT)?", options: ["Ketua RW", "Lurah", "Ketua RT", "Camat"], a: 2, diff: "Sedang" },
+      { q: "Tingkatan wilayah pemerintahan yang dipimpin oleh seorang Camat adalah ...", options: ["Kelurahan", "Kabupaten", "Kecamatan", "Rukun Warga"], a: 2, diff: "Sedang" },
+      { q: "Pemimpin Kabupaten dan Negara Indonesia secara berurutan adalah ...", options: ["Lurah dan Camat", "Bupati dan Presiden", "Camat dan Gubernur", "Ketua RW dan Bupati"], a: 1, diff: "Tinggi" },
+      { q: "Akibat buruk jika hutan gundul dan ditebang sembarangan adalah ...", options: ["Terjadinya banjir sehingga manusia sulit beraktivitas", "Udara menjadi lebih dingin", "Ikan di laut semakin banyak", "Tanah semakin subur"], a: 0, diff: "Sedang" },
+      { q: "Manfaat yang diperoleh jika hutan asri dan terjaga dengan baik adalah ...", options: ["Tidak terjadi bencana banjir dan kebutuhan tercukupi", "Pohon menghalangi jalan", "Hewan merusak tanaman", "Sumber air hilang"], a: 0, diff: "Sedang" },
+      { q: "Bentang alam yang berupa pegunungan dengan udara sejuk dinamakan ...", options: ["Pantai pesisir", "Dataran tinggi", "Dataran rendah", "Lautan dalam"], a: 1, diff: "Sedang" },
+      { q: "Di daerah dataran rendah, lingkungan umumnya dimanfaatkan untuk bangunan seperti ...", options: ["Pabrik, rumah sakit, dan kantor pemerintahan", "Tambak karang laut dalam", "Puncak gunung bersalju", "Hutan rimba liar"], a: 0, diff: "Tinggi" },
+      { q: "Sebagian besar masyarakat yang tinggal di daerah pantai bekerja sebagai ...", options: ["Petani kol dan wortel", "Nelayan penangkap ikan", "Pemetik teh", "Penebang kayu"], a: 1, diff: "Sedang" },
+      { q: "Mengapa masyarakat memiliki mata pencarian yang berbeda-beda?", options: ["Karena dipaksa aturan", "Karena menyesuaikan dengan keadaan lingkungannya", "Karena semuanya ingin pekerjaan sama", "Karena tidak ada sekolah"], a: 1, diff: "Tinggi" },
+      { q: "Tanaman yang banyak dibudidayakan di daerah dataran tinggi adalah ...", options: ["Pohon kelapa dan rumput laut", "Sayur-sayuran, buah, kopi, dan teh", "Pohon bakau", "Terumbu karang"], a: 1, diff: "Sedang" },
+      { q: "Manusia disebut makhluk sosial. Artinya adalah ...", options: ["Bisa hidup sendiri tanpa orang lain", "Tidak bisa hidup tanpa bantuan manusia lain", "Hanya boleh punya satu teman", "Tidak perlu alam sekitar"], a: 1, diff: "Tinggi" },
+      { q: "Sikap baik dalam menghadapi perbedaan keadaan lingkungan adalah ...", options: ["Saling mengejek tempat tinggal", "Hanya berteman satu RT", "Saling menghargai keberagaman dan hidup rukun", "Mempermasalahkan perbedaan"], a: 2, diff: "Sedang" },
+      { q: "Tindakan yang baik jika tetangga di RT kita tertimpa musibah adalah ...", options: ["Membiarkannya saja", "Gotong royong membantu meringankan bebannya", "Menutup pintu rumah rapat", "Pindah rumah"], a: 1, diff: "Tinggi" }
+    ];
+
+    // STATE
+    let currentMaterialIdx = 0;
+    let currentQuestionIdx = 0;
+    let userAnswers = {};
+    let finalScore = null;
+    let finalPredicate = "";
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+    let recordingSec = 0;
+    let recordTimerInterval = null;
+    let recordedAudioBlob = null;
+    let recordedAudioUrl = null;
+    let audioPlayer = new Audio();
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      renderMaterialContent();
+      renderQuizDots();
+      renderCurrentQuestion();
+      updateProgress();
+      updateWhatsAppPreview();
+      const today = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('cert-date').innerText = today;
+    });
+
+    // NAVIGATION
+    function switchView(viewName) {
+      ['home', 'materi', 'asesmen', 'sertifikat', 'kirim'].forEach(v => {
+        document.getElementById(`view-${v}`).classList.add('hidden');
+        const navBtn = document.getElementById(`nav-${v}`);
+        if (navBtn) {
+          navBtn.className = "px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100";
+        }
+      });
+      document.getElementById(`view-${viewName}`).classList.remove('hidden');
+      const activeNav = document.getElementById(`nav-${viewName}`);
+      if (activeNav) {
+        activeNav.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-100 text-[#7B2CBF]";
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // STUDENT PROFILE
+    function saveStudentProfile() {
+      const nama = document.getElementById('input-nama').value || 'Budi Pratama';
+      const kelas = document.getElementById('input-kelas').value || 'Kelas 2 SD';
+      const mapel = document.getElementById('input-mapel').value || 'Pendidikan Pancasila / PKn';
+
+      document.getElementById('cert-student-name').innerText = nama;
+      document.getElementById('cert-student-class').innerText = `${kelas} • Mata Pelajaran: ${mapel}`;
+      updateWhatsAppPreview();
+    }
+
+    // PROGRESS LOGIC
+    function updateProgress() {
+      let progress = 10;
+      if (currentMaterialIdx >= 1) progress += 15;
+      if (currentMaterialIdx >= 3) progress += 15;
+      if (recordedAudioBlob) progress += 20;
+      if (finalScore !== null) progress += 40;
+      progress = Math.min(100, progress);
+
+      document.getElementById('progress-top-text').innerText = `${progress}% Tuntas`;
+      document.getElementById('hero-progress-text').innerText = `${progress}%`;
+      document.getElementById('hero-progress-bar').style.width = `${progress}%`;
+    }
+
+    // MATERI FUNCTIONS
+    function selectMaterialUnit(idx) {
+      currentMaterialIdx = idx;
+      for (let i = 0; i < 4; i++) {
+        const tab = document.getElementById(`mat-tab-${i}`);
+        if (i === idx) {
+          tab.className = "p-2.5 rounded-2xl text-left border-2 bg-purple-50 border-[#7B2CBF] text-[#7B2CBF] font-bold text-xs";
+        } else {
+          tab.className = "p-2.5 rounded-2xl text-left border-2 bg-white border-slate-200 text-slate-600 font-semibold text-xs";
+        }
+      }
+      renderMaterialContent();
+      updateProgress();
+    }
+
+    function nextMaterialUnit() {
+      if (currentMaterialIdx < 3) selectMaterialUnit(currentMaterialIdx + 1);
+    }
+    function prevMaterialUnit() {
+      if (currentMaterialIdx > 0) selectMaterialUnit(currentMaterialIdx - 1);
+    }
+    function restartMaterial() {
+      selectMaterialUnit(0);
+    }
+
+    function renderMaterialContent() {
+      const u = MATERIAL_DATA[currentMaterialIdx];
+      let html = `
+        <div class="space-y-2">
+          <span class="text-[10px] font-black uppercase text-[#7B2CBF] tracking-wider">Unit ${currentMaterialIdx + 1} dari 4</span>
+          <h2 class="text-2xl font-black text-slate-900 font-display">${u.title}</h2>
+          <p class="text-xs sm:text-sm text-slate-500 font-medium">${u.subtitle}</p>
+        </div>
+        <div class="space-y-3 text-sm sm:text-base text-slate-700 leading-relaxed border-t border-slate-100 pt-4">
+      `;
+      u.paragraphs.forEach(p => {
+        html += `<p class="first-letter:text-xl first-letter:font-bold first-letter:text-[#7B2CBF]">${p}</p>`;
+      });
+      html += `</div><div class="bg-gradient-to-r from-purple-50 to-teal-50 p-4 rounded-2xl border border-slate-200 mt-4 space-y-2">
+        <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">💡 Poin Kunci untuk Diingat:</h4>
+        <ul class="text-xs text-slate-600 space-y-1">
+      `;
+      u.points.forEach(pt => {
+        html += `<li>• ${pt}</li>`;
+      });
+      html += `</ul></div>`;
+      document.getElementById('material-content-box').innerHTML = html;
+    }
+
+    function speakMaterialText() {
+      if (!('speechSynthesis' in window)) {
+        alert("Browser Anda tidak mendukung suara otomatis.");
+        return;
+      }
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        document.getElementById('btn-speak-label').innerText = "Dengarkan Narasi Guru";
+        return;
+      }
+      const u = MATERIAL_DATA[currentMaterialIdx];
+      const text = `${u.title}. ${u.paragraphs.join(' ')}`;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'id-ID';
+      utterance.rate = 0.95;
+      utterance.onend = () => {
+        document.getElementById('btn-speak-label').innerText = "Dengarkan Narasi Guru";
+      };
+      window.speechSynthesis.speak(utterance);
+      document.getElementById('btn-speak-label').innerText = "Hentikan Suara";
+    }
+
+    // ASESMEN FUNCTIONS
+    function renderQuizDots() {
+      const container = document.getElementById('q-dots-container');
+      container.innerHTML = "";
+      QUIZ_DATA.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `q-dot-${idx}`;
+        btn.innerText = idx + 1;
+        btn.onclick = () => jumpToQuestion(idx);
+        btn.className = "w-7 h-7 rounded-lg text-xs font-semibold shrink-0 bg-slate-100 text-slate-600";
+        container.appendChild(btn);
+      });
+    }
+
+    function jumpToQuestion(idx) {
+      currentQuestionIdx = idx;
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const q = QUIZ_DATA[currentQuestionIdx];
+      document.getElementById('q-number-indicator').innerText = `Soal Nomor: ${currentQuestionIdx + 1} dari 20`;
+      document.getElementById('q-difficulty-badge').innerText = `Tingkat ${q.diff}`;
+      document.getElementById('q-text').innerText = q.q;
+
+      // Update dots
+      QUIZ_DATA.forEach((_, idx) => {
+        const dot = document.getElementById(`q-dot-${idx}`);
+        if (dot) {
+          if (idx === currentQuestionIdx) {
+            dot.className = "w-7 h-7 rounded-lg text-xs font-bold shrink-0 ring-2 ring-[#7B2CBF] bg-purple-50 text-[#7B2CBF]";
+          } else if (userAnswers[idx] !== undefined) {
+            dot.className = "w-7 h-7 rounded-lg text-xs font-bold shrink-0 bg-[#7B2CBF] text-white";
+          } else {
+            dot.className = "w-7 h-7 rounded-lg text-xs font-semibold shrink-0 bg-slate-100 text-slate-600";
+          }
+        }
+      });
+
+      const optContainer = document.getElementById('q-options-container');
+      optContainer.innerHTML = "";
+      q.options.forEach((opt, oIdx) => {
+        const btn = document.createElement('button');
+        const isSelected = userAnswers[currentQuestionIdx] === oIdx;
+        btn.onclick = () => selectOption(oIdx);
+        btn.className = `w-full text-left p-3.5 rounded-2xl border-2 transition-all flex items-center gap-3 text-xs sm:text-sm ${
+          isSelected
+            ? 'border-[#7B2CBF] bg-purple-50 text-[#7B2CBF] font-bold'
+            : 'border-slate-200 hover:bg-slate-50 text-slate-700'
+        }`;
+        btn.innerHTML = `<span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-[#7B2CBF] text-white' : 'bg-slate-100 text-slate-600'} flex items-center justify-center font-bold text-xs">${['A', 'B', 'C', 'D'][oIdx]}</span><span>${opt}</span>`;
+        optContainer.appendChild(btn);
+      });
+
+      const answeredCount = Object.keys(userAnswers).length;
+      document.getElementById('q-answered-indicator').innerText = `Terjawab: ${answeredCount}/20`;
+
+      // Next / Submit Buttons
+      if (currentQuestionIdx === 19) {
+        document.getElementById('btn-next-q').classList.add('hidden');
+        document.getElementById('btn-submit-q').classList.remove('hidden');
+      } else {
+        document.getElementById('btn-next-q').classList.remove('hidden');
+        document.getElementById('btn-submit-q').classList.add('hidden');
+      }
+    }
+
+    function selectOption(optIdx) {
+      userAnswers[currentQuestionIdx] = optIdx;
+      renderCurrentQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIdx < 19) {
+        currentQuestionIdx++;
+        renderCurrentQuestion();
+      }
+    }
+    function prevQuestion() {
+      if (currentQuestionIdx > 0) {
+        currentQuestionIdx--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function submitQuiz() {
+      let correct = 0;
+      QUIZ_DATA.forEach((q, idx) => {
+        if (userAnswers[idx] === q.a) correct++;
+      });
+      finalScore = Math.round((correct / 20) * 100);
+
+      // Kategori Sesuai Prompt
+      if (finalScore >= 90) {
+        finalPredicate = "Sangat Baik";
+      } else if (finalScore >= 80) {
+        finalPredicate = "Baik";
+      } else if (finalScore >= 70) {
+        finalPredicate = "Cukup";
+      } else {
+        finalPredicate = "Perlu Bimbingan";
+      }
+
+      document.getElementById('final-score-display').innerText = finalScore;
+      document.getElementById('final-predicate-display').innerText = finalPredicate;
+      document.getElementById('predicate-rule-text').innerText = 
+        finalScore >= 90 ? "Kategori: 90–100 (Sangat Baik)" :
+        finalScore >= 80 ? "Kategori: 80–89 (Baik)" :
+        finalScore >= 70 ? "Kategori: 70–79 (Cukup)" : "Kategori: < 70 (Perlu Bimbingan)";
+      
+      document.getElementById('quiz-result-banner').classList.remove('hidden');
+      document.getElementById('card-score-preview').innerText = `Nilai: ${finalScore}/100`;
+
+      // Sertifikat Unlocking
+      document.getElementById('cert-score').innerText = finalScore;
+      document.getElementById('cert-predicate').innerText = finalPredicate;
+      document.getElementById('cert-warning-box').classList.add('hidden');
+      document.getElementById('cert-action-buttons').classList.remove('hidden');
+      document.getElementById('printable-certificate').classList.remove('hidden');
+
+      // Konfeti jika nilai >= 90
+      if (finalScore >= 90 && typeof confetti === 'function') {
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+      }
+
+      updateProgress();
+      updateWhatsAppPreview();
+      window.scrollTo({ top: 150, behavior: 'smooth' });
+    }
+
+    function resetQuiz() {
+      userAnswers = {};
+      finalScore = null;
+      finalPredicate = "";
+      document.getElementById('quiz-result-banner').classList.add('hidden');
+      currentQuestionIdx = 0;
+      renderCurrentQuestion();
+      document.getElementById('cert-warning-box').classList.remove('hidden');
+      document.getElementById('cert-action-buttons').classList.add('hidden');
+      document.getElementById('printable-certificate').classList.add('hidden');
+      updateProgress();
+      updateWhatsAppPreview();
+    }
+
+    // AUDIO RECORDER
+    async function toggleRecording() {
+      if (isRecording) {
+        // Stop
+        if (mediaRecorder) mediaRecorder.stop();
+        clearInterval(recordTimerInterval);
+        isRecording = false;
+        document.getElementById('btn-rec-action').innerHTML = "🔴 Rekam Ulang";
+        document.getElementById('btn-rec-action').className = "flex-1 bg-[#7B2CBF] hover:bg-[#6823A4] text-white py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1";
+        document.getElementById('rec-status-text').innerText = "Rekaman Tersimpan";
+        return;
+      }
+
+      // Start
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+        mediaRecorder.onstop = () => {
+          recordedAudioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          recordedAudioUrl = URL.createObjectURL(recordedAudioBlob);
+          audioPlayer.src = recordedAudioUrl;
+          document.getElementById('btn-rec-play').classList.remove('hidden');
+          document.getElementById('btn-rec-dl').classList.remove('hidden');
+          updateProgress();
+          updateWhatsAppPreview();
+          stream.getTracks().forEach(t => t.stop());
+        };
+        mediaRecorder.start();
+        isRecording = true;
+        recordingSec = 0;
+        document.getElementById('rec-timer').innerText = "00:00";
+        document.getElementById('btn-rec-action').innerHTML = "⏹️ Selesai Rekam";
+        document.getElementById('btn-rec-action').className = "flex-1 bg-rose-600 hover:bg-rose-700 text-white py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1 animate-pulse";
+        document.getElementById('rec-status-text').innerText = "Sedang Merekam...";
+
+        recordTimerInterval = setInterval(() => {
+          recordingSec++;
+          const mins = String(Math.floor(recordingSec / 60)).padStart(2, '0');
+          const secs = String(recordingSec % 60).padStart(2, '0');
+          document.getElementById('rec-timer').innerText = `${mins}:${secs}`;
+        }, 1000);
+      } catch (err) {
+        alert("Izin mikrofon diperlukan untuk merekam suara.");
+      }
+    }
+
+    function playRecordedAudio() {
+      if (recordedAudioUrl) {
+        audioPlayer.currentTime = 0;
+        audioPlayer.play();
+      }
+    }
+
+    function downloadAudioFile() {
+      if (!recordedAudioUrl) {
+        alert("Belum ada rekaman suara.");
+        return;
+      }
+      const a = document.createElement('a');
+      a.href = recordedAudioUrl;
+      const nama = (document.getElementById('input-nama').value || 'siswa').replace(/\s+/g, '_');
+      a.download = `rekaman_suara_${nama}.webm`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function toggleRecorderBody() {
+      const b = document.getElementById('recorder-body');
+      const btn = document.getElementById('btn-toggle-rec');
+      if (b.classList.contains('hidden')) {
+        b.classList.remove('hidden');
+        btn.innerText = "Kecilkan";
+      } else {
+        b.classList.add('hidden');
+        btn.innerText = "Buka";
+      }
+    }
+
+    // CERTIFICATE JPG DOWNLOAD ENGINE
+    function downloadCertificateJPG() {
+      if (finalScore === null) return;
+      const canvas = document.createElement('canvas');
+      canvas.width = 1600;
+      canvas.height = 1130;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Background
+      const grad = ctx.createLinearGradient(0, 0, 1600, 1130);
+      grad.addColorStop(0, '#FAF5FF');
+      grad.addColorStop(0.5, '#FFFFFF');
+      grad.addColorStop(1, '#F0FDFA');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1600, 1130);
+
+      // Borders
+      ctx.strokeStyle = '#7B2CBF';
+      ctx.lineWidth = 16;
+      ctx.strokeRect(30, 30, 1540, 1070);
+      ctx.strokeStyle = '#2EC4B6';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(50, 50, 1500, 1030);
+
+      // Texts
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#7B2CBF';
+      ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('MEDIA PEMBELAJARAN INTERAKTIF • SEKOLAH DASAR', 800, 120);
+
+      ctx.fillStyle = '#2EC4B6';
+      ctx.font = 'bold 36px "Quicksand", sans-serif';
+      ctx.fillText('SERTIFIKAT HASIL BELAJAR MANDIRI', 800, 175);
+
+      ctx.fillStyle = '#0F172A';
+      ctx.font = 'bold 50px "Quicksand", sans-serif';
+      ctx.fillText('PENGHARGAAN PRESTASI', 800, 240);
+
+      ctx.fillStyle = '#64748B';
+      ctx.font = '22px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Diberikan dengan penuh apresiasi kepada peserta didik berprestasi:', 800, 300);
+
+      const nama = document.getElementById('input-nama').value || 'Budi Pratama';
+      ctx.fillStyle = '#7B2CBF';
+      ctx.font = 'bold 64px "Quicksand", sans-serif';
+      ctx.fillText(nama, 800, 390);
+
+      ctx.strokeStyle = '#2EC4B6';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(450, 415);
+      ctx.lineTo(1150, 415);
+      ctx.stroke();
+
+      const kelas = document.getElementById('input-kelas').value || 'Kelas 2 SD';
+      const mapel = document.getElementById('input-mapel').value || 'Pendidikan Pancasila';
+      ctx.fillStyle = '#334155';
+      ctx.font = 'bold 26px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`${kelas} • Mata Pelajaran: ${mapel}`, 800, 460);
+
+      ctx.fillStyle = '#475569';
+      ctx.font = '22px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Telah menyelesaikan pembelajaran & Asesmen Akhir materi:', 800, 520);
+      ctx.fillStyle = '#0F172A';
+      ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('“B. Tempat Tinggalku Bagian dari NKRI”', 800, 565);
+
+      // Box Nilai
+      ctx.fillStyle = '#FAF5FF';
+      ctx.strokeStyle = '#7B2CBF';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(450, 620, 700, 140, 20);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#7B2CBF';
+      ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('NILAI ASESMEN AKHIR', 625, 665);
+      ctx.fillStyle = '#0F766E';
+      ctx.fillText('PREDIKAT CAPAIAN', 975, 665);
+
+      ctx.fillStyle = '#7B2CBF';
+      ctx.font = 'bold 54px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`${finalScore}`, 625, 725);
+      ctx.fillStyle = '#0F766E';
+      ctx.font = 'bold 36px "Quicksand", sans-serif';
+      ctx.fillText(`${finalPredicate}`, 975, 720);
+
+      const today = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      ctx.fillStyle = '#64748B';
+      ctx.font = '20px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`Tanggal Belajar: ${today}`, 800, 810);
+
+      // Guru & Kepala Sekolah
+      ctx.fillStyle = '#1E293B';
+      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Guru Pengampu,', 400, 890);
+      ctx.fillText('Danu Waloyo, S.Pd.', 400, 1020);
+
+      ctx.fillText('Kepala Sekolah,', 1200, 890);
+      ctx.fillText('Hj. Siti Rahmah, M.Pd.', 1200, 1020);
+
+      // Gold seal
+      ctx.fillStyle = '#FFB703';
+      ctx.beginPath();
+      ctx.arc(800, 940, 55, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#78350F';
+      ctx.font = 'bold 16px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('LULUS', 800, 935);
+      ctx.fillText('RESMI', 800, 955);
+
+      const url = canvas.toDataURL('image/jpeg', 0.95);
+      const link = document.createElement('a');
+      link.download = `Sertifikat_Hasil_Belajar_${nama.replace(/\s+/g, '_')}.jpg`;
+      link.href = url;
+      link.click();
+    }
+
+    // WHATSAPP SUBMISSION (085828459399)
+    function updateWhatsAppPreview() {
+      const nama = document.getElementById('input-nama') ? document.getElementById('input-nama').value : 'Budi Pratama';
+      const kelas = document.getElementById('input-kelas') ? document.getElementById('input-kelas').value : 'Kelas 2 SD';
+      const scoreStr = finalScore !== null ? `${finalScore} (${finalPredicate})` : "(Belum mengerjakan asesmen)";
+      const recStr = recordedAudioBlob ? "Tersedia & Tersimpan" : "(Belum ada rekaman suara)";
+
+      const text = `Halo Bapak/Ibu Guru Admin, berikut adalah laporan hasil belajar MPI Interaktif:
+
+1. nama siswa: ${nama}
+2. kelas: ${kelas}
+3. Nilai Asasmen Akhir: ${scoreStr}
+4. Rekaman suara: ${recStr}
+
+Lampiran: Sertifikat JPG dan Rekaman Suara telah saya unduh dan saya kirimkan bersama pesan ini. Terima kasih!`;
+
+      const previewElem = document.getElementById('wa-preview-text');
+      if (previewElem) previewElem.innerText = text;
+
+      const waBtn = document.getElementById('wa-link-btn');
+      if (waBtn) {
+        waBtn.href = `https://wa.me/6285828459399?text=${encodeURIComponent(text)}`;
+      }
+    }
+
+    function copyWaText() {
+      const t = document.getElementById('wa-preview-text').innerText;
+      navigator.clipboard.writeText(t);
+      const b = document.getElementById('btn-copy-wa');
+      b.innerText = "✅ Tersalin!";
+      setTimeout(() => { b.innerText = "📋 Salin Pesan"; }, 2000);
+    }
+
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>
